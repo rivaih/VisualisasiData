@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IMDb Top 1000 Visualization</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="bg-gradient-custom py-3 px-4 shadow-sm">
+    <div class="container d-flex justify-content-between align-items-center flex-wrap">
+      <h1 class="text-white mb-0">🎬 Visualisasi IMDb Top 1000</h1>
+      <div class="d-flex align-items-center text-white">
+        <img src="assets/fotoprofil.jpg" alt="Rani" class="rounded-circle me-2">
+        <span class="fw-bold">Rani Siti Nabila</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="container my-4">
+    <p class="lead text-center mb-4">
+      Eksplorasi interaktif terhadap 1.000 film dan acara TV teratas versi IMDb, mencakup analisis genre, rating, tahun rilis, serta performa box office.
+    </p>
+
+    <!-- 1. Bar Chart -->
+    <section class="mb-5 p-4 bg-white rounded-3 shadow-sm position-relative">
+      <h3>1️⃣ Distribusi Film Berdasarkan Genre</h3>
+      <p class="mb-3">Visualisasi ini menunjukkan frekuensi kemunculan setiap genre dalam daftar IMDb Top 1000.</p>
+      <!-- Filter -->
+      <div class="d-flex justify-content-center mb-3">
+        <div style="max-width: 200px; width: 100%;">
+          <label for="genreTopFilter" class="form-label">Tampilkan Top Genre:</label>
+          <select id="genreTopFilter" class="form-select">
+            <option value="5">Top 5</option>
+            <option value="10" selected>Top 10</option>
+            <option value="15">Top 15</option>
+            <option value="20">Top 20</option>
+          </select>
+        </div>
+      </div>
+      <!-- Chart -->
+      <div id="genre-bar" class="chart-container mb-3"style="min-height: 600px;" ></div>
+      <!-- Insight -->
+      <div class="insight-box">
+        <strong>💡 Insight:</strong> Genre <em>Drama</em> mendominasi daftar, mencerminkan preferensi audiens terhadap narasi emosional dan realistis.
+      </div>
+    </section>
+
+    <!-- 2. Histogram -->
+    <section class="mb-5 p-4 bg-white rounded-3 shadow-sm position-relative">
+      <h3>2️⃣ Distribusi Rating IMDb</h3>
+      <p class="mb-3">Histogram ini menggambarkan sebaran rating film dalam rentang 1980–2020.</p>
+      <!-- Filter -->
+      <div class="d-flex justify-content-center mb-3">
+        <div style="max-width: 300px; width: 100%;">
+          <label for="yearRangeHistogram" class="form-label">Filter Rentang Tahun :</label>
+          <div class="d-flex align-items-center gap-2">
+            <input type="number" id="yearFrom" class="form-control form-control-sm" min="1980" max="2020" value="1980">
+            <span class="text-nowrap">to</span>
+            <input type="number" id="yearTo" class="form-control form-control-sm" min="1980" max="2020" value="2020">
+          </div>
+        </div>
+      </div>
+      <!-- Chart -->
+      <div id="rating-histogram" class="chart-container mb-3"style="min-height: 600px;"></div>
+      <!-- Insight -->
+      <div class="insight-box">
+        <strong>💡 Insight:</strong> Sebagian besar film berada dalam rentang rating <em>7,5–8,5</em>, menunjukkan kualitas yang konsisten tinggi.
+      </div>
+    </section>
+
+    <!-- 3. Line Chart -->
+    <section class="mb-5 p-4 bg-white rounded-3 shadow-sm position-relative">
+      <h3>3️⃣ Jumlah Film per Tahun</h3>
+      <p class="mb-3">Grafik garis ini menggambarkan tren produksi film dalam daftar IMDb Top 1000 dari waktu ke waktu.</p>
+      <!-- Filter -->
+      <div class="d-flex justify-content-center mb-3">
+        <div style="max-width: 300px; width: 100%;">
+          <label for="yearRangeLine" class="form-label">Filter Rentang Tahun:</label>
+          <div class="d-flex align-items-center gap-2">
+            <input type="number" id="yearFromLine" class="form-control form-control-sm" min="1920" max="2025" value="1980">
+            <span class="text-nowrap">to</span>
+            <input type="number" id="yearToLine" class="form-control form-control-sm" min="1920" max="2025" value="2020">
+          </div>
+        </div>
+      </div>
+      <!-- Chart -->
+      <div id="film-per-year" class="chart-container mb-3"style="min-height: 600px;"></div>
+      <!-- Insight -->
+      <div class="insight-box">
+        <strong>💡 Insight:</strong> Puncak produksi film terjadi pada periode <em>1990–2000-an</em>, sejalan dengan perkembangan pesat industri perfilman global.
+      </div>
+    </section>
+
+    <!-- 4. Pie Chart -->
+    <section class="mb-5 p-4 bg-white rounded-3 shadow-sm position-relative">
+      <h3>4️⃣ Proporsi Genre Film</h3>
+      <p class="mb-3">Diagram pie ini menampilkan distribusi persentase seluruh genre dalam dataset IMDb Top 1000.</p>
+      <!-- Chart -->
+      <div id="genre-pie" class="chart-container mb-3" style="min-height: 600px;"></div>
+      <!-- Insight -->
+      <div class="insight-box">
+        <strong>💡 Insight:</strong> Genre <em>Drama (28%)</em> dan <em>Comedy (9%)</em> merupakan dua kategori paling dominan, sedangkan genre seperti <em>Western</em> memiliki representasi yang sangat terbatas.
+      </div>
+    </section>
+
+    <!-- 5. Scatter Plot -->
+    <section class="mb-5 p-4 bg-white rounded-3 shadow-sm position-relative">
+      <h3>5️⃣ Korelasi Rating IMDb dan Pendapatan Box Office</h3>
+      <p class="mb-3">Visualisasi ini mengeksplorasi hubungan antara kualitas kritis (rating IMDb) dan keberhasilan komersial (pendapatan box office).</p>
+      <!-- Chart -->
+      <div id="rating-vs-gross" class="chart-container mb-3" style="min-height: 600px;"></div>
+      <!-- Insight -->
+      <div class="insight-box">
+        <strong>💡 Insight:</strong> Tidak terdapat korelasi kuat antara rating tinggi dan pendapatan besar. Film dengan rating di atas <em>8,5</em> sering kali memiliki pendapatan yang relatif rendah, mengindikasikan bahwa nilai artistik tidak selalu sejalan dengan kesuksesan komersial.
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-light border-top py-3">
+    <div class="container text-center">
+      <p class="mb-0">
+        <strong>Rani Siti Nabila</strong> | NIM: 220660121034 | Informatika VII-A | Mata Kuliah: Visualisasi Data
+      </p>
+    </div>
+  </footer>
+
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
+  <!-- Data & Charts -->
+  <script src="js/data.js"></script>
+  <script src="js/charts.js"></script>
+</body>
+</html>
