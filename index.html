@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dashboard Visualisasi UMKM</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <!-- PapaParse -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <div>
+      <h1>Dashboard Visualisasi UMKM</h1>
+      <p class="muted">
+        Website ini menampilkan <b>visualisasi data UMKM</b> dalam bentuk bar chart, line chart, dan pie chart berdasarkan file CSV <code>umkm_success_prediction_with_success.csv</code>.
+      </p>
+    </div>
+    <div class="controls card">
+      <label for="categoryFilter">Filter kategori:</label>
+      <select id="categoryFilter"><option value="__all__">All</option></select>
+      <label for="xField">X axis:</label>
+      <select id="xField"></select>
+      <label for="yField">Y axis:</label>
+      <select id="yField"></select>
+      <button id="refreshBtn" class="btn">Tampilkan</button>
+    </div>
+  </header>
+
+  <main class="grid">
+    <section class="card chart-wrap full">
+      <h3>📊 Bar Chart — Distribusi Data</h3>
+      <canvas id="barChart"></canvas>
+      <p class="explanation" id="barExplain"></p>
+    </section>
+
+    <section class="card chart-wrap">
+      <h3>📈 Line Chart — Tren Data</h3>
+      <canvas id="lineChart"></canvas>
+      <p class="explanation" id="lineExplain"></p>
+    </section>
+
+    <section class="card chart-wrap">
+      <h3>🥧 Pie Chart — Proporsi Kelas Target</h3>
+      <canvas id="pieChart"></canvas>
+      <p class="explanation" id="pieExplain"></p>
+    </section>
+
+    <section class="card full" id="insights">
+      <h3>🧠 Analisis & Kesimpulan</h3>
+      <p id="insightText" class="muted">Data sedang dimuat...</p>
+    </section>
+  </main>
+
+  <footer>
+    <p class="muted">Dikembangkan untuk tugas mata kuliah <b>Visualisasi Data</b> — © Riva Ihsanul Amal</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
